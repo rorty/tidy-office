@@ -1,0 +1,29 @@
+- error = @cartridge_model.errors.include?(:cartridge_type_id)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "cartridge_type_id"}= t(:cartridge_type_id)
+  = select_tag "cartridge_model[cartridge_type_id]", id: "cartridge_type_id", class: "form-control", :selected => @cartridge_model.cartridge_type_id,:collection => @cartridge_types, :fields => [:name, :id]
+  %span.help-block= @cartridge_model.errors[:cartridge_type_id].first if error
+- error = @cartridge_model.errors.include?(:manufacturer_id)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "manufacturer_id"}= t(:manufacturer_id)
+  = select_tag "cartridge_model[manufacturer_id]", id: "manufacturer_id", class: "form-control", :selected => @cartridge_model.manufacturer_id, :collection => @manufacturers, :fields => [:name, :id]
+  %span.help-block= @cartridge_model.errors[:manufacturer_id].first if error
+- error = @cartridge_model.errors.include?(:name)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "name"}= t(:name)
+  %input.form-control{:name => "cartridge_model[name]", :type => "text", :value => "#{@cartridge_model.name}"}
+  %span.help-block= @cartridge_model.errors[:name].first if error
+- error = @cartridge_model.errors.include?(:description)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "description"}= t(:description)
+  %textarea.form-control.note_note{rows: "3", name: "cartridge_model[description]"}= @cartridge_model.description
+  %span.help-block= @cartridge_model.errors[:code].first if error
+- error = @cartridge_model.errors.include?(:disabled)
+.form-group 
+  .checkbox{class: "#{'has-error' if error}"}
+    %label
+      %input{:name => "cartridge_model[disabled]", :type => "hidden", :value => "0"}
+      %input{:checked => ("checked" if @cartridge_model.disabled) , :name => "cartridge_model[disabled]", :type => "checkbox", :value => "1"}
+      = t(:disabled)
+%input.btn.btn-success{type: "submit", value: t(:save)}
+%a.btn.btn.btn-default{href: url("cartridge_models", false)}= t(:cancel)

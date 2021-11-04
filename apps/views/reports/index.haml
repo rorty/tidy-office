@@ -1,0 +1,18 @@
+- content_for :sidebar do
+  = haml :"reports/action"
+
+.tabs-content
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th= t(:title)
+        - @action.each do |head|
+          %th.rotated-text
+            %div
+              %span= t(head)
+    %tbody
+      - @totals.each do |total|
+        %tr
+          %td= total[:title]
+          - @action.each do |item|
+            %td= total[:total][item.to_sym]

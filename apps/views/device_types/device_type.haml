@@ -1,0 +1,11 @@
+%tr
+  %td= device_type.name
+  %td.text-center
+    - if device_type.compatibility
+      %span.glyphicon.glyphicon-ok
+  %td
+    .btn-group
+      %a.btn.btn-xs.btn-info{href: url("device_types/edit/#{device_type.id}", false)}
+        %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+      %a.btn.btn-xs.btn-danger{href: url("device_types/destroy/#{device_type.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete"}
+        %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"} 

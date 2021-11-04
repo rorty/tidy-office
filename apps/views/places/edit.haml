@@ -1,0 +1,12 @@
+- haml :"layouts/panel_models"
+%ul.nav.nav-tabs
+  %li
+    %a{:href => url("places", false)}= t(:list)
+  %li
+    %a{:href => url("places/new", false)}= t(:new)
+  %li.active
+    %a{:href => url("places/edit/#{@place.id}", false)}= t(:edit)
+.tabs-content
+  %form{ :action => url("places/update/#{@place.id}", false), :method => 'post' }
+    %input{:name => "_method", :type => "hidden", :value => "put"}
+    = haml :"places/form"

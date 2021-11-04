@@ -1,0 +1,14 @@
+- matrix = matrix_action[Cartridge::ALLOWED_VIEWS_CARTRIDGE.index(@view)]
+.list-group
+  - %w[to_reserve to_issue to_accept to_service from_service to_faulty to_write_off].each_with_index do |action, index|
+    - if matrix[index]
+      %a.list-group-item{:href => url("cartridges/#{action}", false), :onclick => "this.href = this.href.split('?')[0] + '?cartridge_ids='+encodeURI(tidyoffice.checked());"}= t(action)
+.list-group 
+  %a.list-group-item{:href => url("cartridges/new", false)}
+    = t(:new)
+  %a.list-group-item{:href => "#", :onclick => "tidyoffice.select_all_checked(true);"}
+    = t(:select_all)
+  %a.list-group-item{:href => "#", :onclick => "tidyoffice.select_all_checked(false);"}
+    = t(:deselect_all)
+  %a.list-group-item{:href => url("cartridges/to_print", false), target: "_blank",  :onclick => "this.href = this.href.split('?')[0] + '?cartridge_ids='+encodeURI(tidyoffice.checked());"}
+    = t(:print)

@@ -1,0 +1,11 @@
+- haml :"layouts/panel_models"
+%ul.nav.nav-tabs
+  %li
+    %a{:href => url("places/tree", false)}= t(:tree)
+  %li
+    %a{:href => url("places", false)}= t(:list)
+  %li.active
+    %a{:href => url("places/new", false)}= t(:new)
+.tabs-content
+  %form{:action => url("places/create", false), :method => 'post'}
+    = haml :"places/form"

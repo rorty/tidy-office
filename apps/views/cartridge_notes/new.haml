@@ -1,0 +1,7 @@
+- id_prefix = "cartridge_#{notetable.id}"
+%li.list-group-item#new_note
+  %form{"accept-charset" => "UTF-8", :action => url("cartridge_notes", false), "data-remote" => "true", :method => "post" }
+    %input{type: "hidden", name: "note[cartridge_id]", value: notetable.id}
+    .form-group
+      %textarea.form-control{id: "#{id_prefix}_post_new_note", :rows => "3", name: "note[note]"}= @note.note
+    %input.btn.btn-xs.btn-default{type: "submit", value: t(:add_note)}

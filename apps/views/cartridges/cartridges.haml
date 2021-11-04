@@ -1,0 +1,11 @@
+%table.table#list
+  %thead
+    %tr
+      %th
+      %th= t(:code)
+      %th= t(:title)
+      %th= t(:status)
+      %th= t(:place)
+  %tbody#cartridges
+  - cartridges.each do |cartridge|
+    = haml :"cartridges/cartridge", :locals => { cartridge: cartridge }

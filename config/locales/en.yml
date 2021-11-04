@@ -1,0 +1,405 @@
+en:
+  event_0001: "#%{code} %{title} issued %{place}"
+  event_0011: "#%{code} %{title} accepted from %{place}"
+  event_0101: "#%{code} %{title} handed over to service"
+  event_0111: "#%{code} %{title} returned from service"
+  event_1101: "#%{code} %{title} needs service"
+  event_1011: "#%{code} %{title} reserved"
+  event_1001: "#%{code} %{title} written off"
+  event_0000: "#%{code} %{title} installed in %{place}"
+  event_0010: "#%{code} %{title} dismantled from %{place}"
+  event_0100: "#%{code} %{title} handed over to service"
+  event_0110: "#%{code} %{title} returned from service"
+  event_1100: "#%{code} %{title} needs service"
+  event_1010: "#%{code} %{title} reserved in %{place}"
+  event_1000: "#%{code} %{title} written off"
+
+  errors:
+    presence: cannot be empty
+    unique: already taken
+
+  print: Printing labels
+  select_device: Select device
+  code: Code
+  title: Title
+  room: room
+  empty: No records
+  position: Position
+  note: Note
+  edit: Edit
+  delete: Delete
+  status: Status
+  refill: Refill
+  inventory_number: Inventory number
+  domain_name: Domain name
+  place: Place
+  changed_at: Changed at
+  cartridges: Cartridges  
+  supply_agreement: Supply agreement
+  regeneration: Regeneration
+  photo_drum: Rhoto drum
+  raquel: Raquel
+  clean: Clean
+  mechanism_repair: Mechanism repair
+  compatibility: Compatibility
+  chip: Chip
+  magnetic_shaft: Magnetic shaft
+  charge_roller: Charge roller
+  dosing_blade: Dosing blade
+  component: Component
+  nodal: Nodal
+  device: Device
+  cartridge: Cartridge
+  enabled: Enabled
+  disabled: Disabled
+  panel_info:        Information
+  panel_notes:       Notes
+  panel_events:      Events
+  panel_totals:      Totals
+  panel_cartridges:  Cartridges
+  panel_devices:     Devices
+  panel_contract:    Contract
+  panel_change_status:       Change status
+  panel_curent_cartridges:  Curent cartridges
+  panel_accepted_curent_cartridges: Accepted curent cartridges
+  panel_curent_devices:    Curent devices
+  panel_places:             Places
+  panel_models:             Models
+  panel_action:  Action
+  panel_service: Service
+  total: Total
+  tree: Tree
+  parent_id: Parent
+
+  tab_all:       All
+  tab_total:     Total
+  tab_reserved:  Reserved
+  tab_issued:    Issued
+  tab_accepted:  Accepted
+  tab_installed: Installed
+  tab_broken:    Broken
+  tab_serviced:  Serviced
+  tab_deducted:  Deducted
+  tab_exhausted: Exhausted
+  tab_deferred:  Deferred
+  tab_undefined: Undefined
+  tab_returned:  Returned
+  tab_reports:     Reports
+  tab_dismantled:  Dismantled
+  tab_home:        Home
+  tab_cartridges:  Cartridges
+  tab_devices:     Devices
+  tab_models:      Models
+  tab_events:      Events
+
+
+  primary:  Primary
+  secondary:  Secondary
+  contracts:  Contracts
+  yield:  Yield
+  name: Name
+  room: Room
+  position: Position
+  places: Places
+  hide: Hide
+  cartridges: Cartridges
+  addons: Addons
+  devices:  Devices
+  device_model: Device_model
+  cartridge_model:  Cartridge_model
+  cartridge_models: Cartridge_models
+  device_models:  Device_models
+  manufacturers:  Manufacturers
+  manufacturer_id:  Manufacturer_id
+  place_id: Place_id
+  description:  Description
+  warehouse:  Warehouse
+  device_type:  Device_type
+  device_types: Device_types
+  cartridge_types:  Cartridge_types
+  type: Type
+  refill: Refill
+  reserved: Reserved
+  issued: Issued
+  accepted: Accepted
+  serviced: Serviced
+  written_off:  Written_off
+  faulty: Faulty
+  changed_at: Changed_at
+  refill_count: Refill_count
+  installed:  Installed
+  dismantled: Dismantled
+  count:  Count
+  short_reserved:   Рез.
+  short_issued:     Выд.
+  short_accepted:   Прин.
+  short_serviced:   На обсл.
+  short_written_off: Спис.
+  short_faulty:     Неиспр.
+
+  short_installed:  Уст.
+  short_dismantled: Демонт.
+
+  status_total:       Total
+  status_reserved:    Reserved
+  status_issued:      Issued
+  status_accepted:    Accepted
+  status_installed:   Installed
+  status_broken:      Broken
+  status_serviced:    Serviced
+  status_deducted:    Deducted
+  status_exhausted:   Exhausted
+  status_deferred:    Deferred
+  status_undefined:   Undefined
+  status_returned:    Returned
+  status_dismantled:  Dismantled
+  status_faulty:      Faulty
+  status_written_off: Written off
+
+  undefined: Undefined
+
+  to_install:     To install
+  to_dismantle:   To dismantle
+  to_service:     To service
+  to_reserve:     To reserve
+  to_issue:       To issue
+  to_accept:      To accept
+  to_faulty:      To faulty
+  to_write_off:   To write_off
+  to_print:       To print
+
+  from_service: From service
+  apply:        Apply
+  contract: Contract
+
+  current_devices: Current devices
+  current_cartridges: Current cartridges
+
+  add_note: Add_note
+  added_note: Added note %{value}
+
+  cartridge_model_id: Cartridge model
+  device_model_id:  Device model
+  device_type_id:   Device type
+  cartridge_type_id: Cartridge type
+  cartridge_type: Cartridge type
+
+  inventory_number: Inventory number
+  options: Опции
+  order_date: Дата заказа
+  delivery_date: Дата доставки
+  inventory_date: Дата инвентаризации
+  warranty_date: Гарантия до
+  buy_date: Дата покупки
+  use_date: Дата использования
+  decommission_date: Дата вывода из эксплуатации
+  old_code: Старый код
+
+  time:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%b %d"
+      long: "%d.%m.%Y в %k:%M"
+  history: История   
+  code: Код
+  type: Тип
+  manufacturer: Производитель
+  model: Модель
+  state: Состояние
+  place: Местонахождение
+  device: Устройство
+  date: Дата
+  edit: Радактировать
+  destroy: Удалить
+  cartridge_items: Экземпляры Картриджей
+  create_at_ago: "%{value} назад"
+  transfert: Передача
+  title: Название
+  select_blank: -- Выберите --
+  return: Забрать
+  ago: ! '%{value} назад'
+  history: История
+  added_ago: добавлен %{value} назад
+  added_by: ! '%{user} добавил(а) %{time_ago} назад'
+
+
+
+
+  page_cartridges: Картриджи 
+  transfer: Передать
+  cartridge: Картридж  
+
+  admin_tab_accounts: Пользователи
+  confirm_delete: Вы уверены в том что желаете удалить запись?
+  domain_name: Доменное имя  
+  status: Статус
+
+
+  id: Id
+  all: Все
+  at: в
+  here: здесь
+  no_button: Нет
+  not_implemented: Пока не поддерживается.
+  or: или
+  select_blank: -- Выберите --
+  select_none: -- Нет --
+  yes_button: Да
+  msg_invalig_login: Неправильный логин или пароль.
+  about_home_page: Домашняя страница
+  admin: Админ
+  logout: Выход
+  welcome: Добро пожаловать
+  profile: Профиль
+
+  number:
+    format:
+      separator: ","
+      delimiter: ""
+      precision: 3
+    currency:
+      format:
+        format: "%n %u"
+        unit: "руб"
+        separator: ","
+        delimiter: " "
+        precision: 2
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Байт"
+            other: "Байт"
+          kb: "Кб"
+          mb: "Мб"
+          gb: "Гб"
+          tb: "Тб"
+
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: около %{count} часа
+        few: около %{count} часов
+        many: около %{count} часов
+        other: около %{count} часа
+      about_x_months:
+        one: около %{count} месяца
+        few: около %{count} месяцев
+        many: около %{count} месяцев
+        other: около %{count} месяца
+      about_x_years:
+        one: около %{count} года
+        few: около %{count} лет
+        many: около %{count} лет
+        other: около %{count} лет
+      almost_x_years:
+        one: почти 1 год
+        few: почти %{count} года
+        many: почти %{count} лет
+        other: почти %{count} лет
+      half_a_minute: полминуты
+      less_than_x_seconds:
+        one: меньше %{count} секунды
+        few: меньше %{count} секунд
+        many: меньше %{count} секунд
+        other: меньше %{count} секунды
+      less_than_x_minutes:
+        one: меньше %{count} минуты
+        few: меньше %{count} минут
+        many: меньше %{count} минут
+        other: меньше %{count} минуты
+      over_x_years:
+        one: больше %{count} года
+        few: больше %{count} лет
+        many: больше %{count} лет
+        other: больше %{count} лет
+      x_seconds:
+        one: "%{count} секунду"
+        few: "%{count} секунды"
+        many: "%{count} секунд"
+        other: "%{count} секунды"
+      x_minutes:
+        one: "%{count} минуту"
+        few: "%{count} минуты"
+        many: "%{count} минут"
+        other: "%{count} минуты"
+      x_days:
+        one: "%{count} день"
+        few: "%{count} дня"
+        many: "%{count} дней"
+        other: "%{count} дня"
+      x_months:
+        one: "%{count} месяц"
+        few: "%{count} месяца"
+        many: "%{count} месяцев"
+        other: "%{count} месяца"
+      x_years:
+        one: "%{count} год"
+        few: "%{count} года"
+        many: "%{count} лет"
+        other: "%{count} года"
+
+  login:
+    title: "Войти"
+    email: "Email"
+    password: "Пароль"
+    bypass: "Пропустить авторизацию?"
+    sign_in: "Войти"
+    error: "Неправильный Email или пароль"
+  save: "Сохранить"
+  save_and_continue: "Сохранить и продолжить"
+  cancel: "Отмена"
+  list: "Список"
+  edit: "Редактировать"
+  new: "Новый"
+  show: "Показать"
+  delete: "Удалить"
+  confirm: "Вы уверены?"
+  created_at: "Создано"
+  all: "Все"
+  profile: "Редактировать профиль"
+  settings: "Настройки"
+  logout: "Выйти"
+  login_error: "Неправильный Email или пароль"
+  select_all: "Выделить всё"
+  deselect_all: "Очистить всё"
+  delete_selected: "Удалить"
+  delete_selected_title: "Вы уверены, что хотите удалить все выбранные элементы?"
+  example: "Ex: простой текст"
+  new_title: "Новый %{model}"
+  create_title: "Редактирование %{model}"
+  create_success: "%{model} был успешно создан."
+  create_error: "Невозможно создать %{model}"
+  edit_title: "Редактирование %{model}"
+  edit_warning: "Не удалось найти %{model} с идентификатором %{id}."
+  update_title: "Редактирование %{model}"
+  update_success: "%{model} с идентификатором %{id} был успешно обновлен."
+  update_error: "Не удалось обновить %{model}."
+  update_warning: "Не удалось найти %{model} с идентификатором %{id}"
+  delete_title: "Удалить %{model}?"
+  delete_success: "%{model} с идентификатором %{id} был успешно удален."
+  delete_error: "Не удалось удалить %{model}!"
+  delete_warning: "Не удалось найти %{model} с идентификатором %{id}."
+  destroy_many_error: "Вы должны выбрать хотя бы один %{model} для удаления."
+  destroy_many_success: "%{model} с идентификаторами %{ids} были успешно удалены."
+  custom_errors:
+    title: "ошибка"
+    '403':
+      title: "ошибка 403"
+      description: "Доступ ограничен"
+    '404':
+      title: "ошибка 404"
+      description: "Страница не найдена"
+    '500':
+      title: "ошибка 500"
+      description: "Ошибка сервера"

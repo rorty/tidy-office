@@ -1,0 +1,32 @@
+- error = @device_model.errors.include?(:device_type_id)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "device_type_id"}= t(:type)
+  = select_tag "device_model[device_type_id]", id: "device_type_id", class: "form-control", :selected => @device_model.device_type_id, :collection => @device_types, :fields => [:name, :id]
+  %span.help-block= @device_model.errors[:device_type_id].first if error
+- error = @device_model.errors.include?(:manufacturer_id)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "manufacturer_id"}= t(:manufacturer_id)
+  = select_tag "device_model[manufacturer_id]", id: "manufacturer_id", class: "form-control", :selected => @device_model.manufacturer_id, :collection => @manufacturers, :fields => [:name, :id]
+  %span.help-block= @device_model.errors[:manufacturer_id].first if error
+- error = @device_model.errors.include?(:name)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "name"}= t(:name)
+  %input.form-control{:name => "device_model[name]", :type => "text", :value => "#{@device_model.name}"}
+  %span.help-block= @device_model.errors[:name].first if error
+- error = @device_model.errors.include?(:description)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "description"}= t(:description)
+  %textarea.form-control.note_note{rows: "3", name: "device_model[description]"}= @device_model.description
+  %span.help-block= @device_model.errors[:code].first if error
+- error = @device_model.errors.include?(:disabled)
+.form-group 
+  .checkbox{class: "#{'has-error' if error}"}
+    %label
+      %input{:name => "device_model[disabled]", :type => "hidden", :value => "0"}
+      %input{:checked => ("checked" if @device_model.disabled) , :name => "device_model[disabled]", :type => "checkbox", :value => "1"}
+      = t(:disabled)
+%input.btn.btn-success{type: "submit", value: t(:save)}
+%a.btn.btn.btn-default{href: url("device_models", false)}= t(:cancel)
+
+
+

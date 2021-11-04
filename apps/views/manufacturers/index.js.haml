@@ -1,0 +1,5 @@
+$('#paginate').html('#{ escape_javascript haml :"shared/paginate", :locals => {collection: @manufacturers, href: lambda{|p| url("/manufacturers?#{build_query(p)}", false)} } }');
+- if @manufacturers.any?
+  $('#manufacturers').html('#{ escape_javascript @manufacturers.map{|manufacturer| haml :"manufacturers/manufacturer", locals: { manufacturer: manufacturer }}.join("") }');
+- else
+  $('#manufacturers').html('#{ escape_javascript haml :"shared/empty", locals: { colspan: 2 } }');

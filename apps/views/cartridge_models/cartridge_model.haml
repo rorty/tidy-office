@@ -1,0 +1,13 @@
+%tr
+  %td= cartridge_model.cartridge_type.name
+  %td= cartridge_model.manufacturer.name
+  %td= cartridge_model.name
+  %td.text-center
+    - if cartridge_model.disabled
+      %span.glyphicon.glyphicon-ok
+  %td
+    .btn-group
+      %a.btn.btn-xs.btn-info{href: url("cartridge_models/edit/#{cartridge_model.id}", false)}
+        %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+      %a.btn.btn-xs.btn-danger{href: url("cartridge_models/destroy/#{cartridge_model.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete"}
+        %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"} 

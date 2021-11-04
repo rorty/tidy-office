@@ -1,0 +1,25 @@
+= haml :"layouts/panel_models"
+%ul.nav.nav-tabs
+  %li.active
+    %a{:href => url("cartridge_models", false)}= t(:list)
+  %li
+    %a{:href => url("cartridge_models/new", false)}= t(:new)
+.tabs-content
+  %table.table
+    %thead
+      %tr
+        %th= t(:manufacturer)
+        %th= t(:name)
+        %th= t(:yield)
+        %th.row-action-header
+    %tbody  
+      - @cartridge_models.each do |cartridge_model|
+        %tr
+          %td= cartridge_model.manufacturer.name
+          %td= cartridge_model.name
+          %td= cartridge_model.yield
+          %td
+            %a.btn.btn-sm.btn-info{href: url("cartridge_models/#{cartridge_model.id}/edit", false)}
+              %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+            %a.btn.btn-sm.btn-danger{href: url("cartridge_models/#{cartridge_model.id}/destroy", false), "data-method" => "delete"}
+              %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"} 

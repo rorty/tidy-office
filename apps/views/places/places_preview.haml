@@ -1,0 +1,6 @@
+%ul.tree
+  - places.each do |place|
+    %li.branch
+      %a.media-object{:href => url("places/show/#{place.id}", false)}= "#{place.name}"
+      - tree(place) do
+        %span= 234

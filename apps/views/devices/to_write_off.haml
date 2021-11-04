@@ -1,0 +1,10 @@
+- content_for :sidebar do
+  = haml :"layouts/panel_event", :locals => {:events => Event.event_devices(@devices.map(&:id))}
+%form{ :action => url("devices/to_write_off", false), :method => :post}
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  %input{:type => "hidden", :name => "device_ids", :value => @devices.map(&:id).join(",")}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t("to_write_off")
+    = haml :"devices/devices_preview", :locals => { :devices => @devices }
+  %input.btn.btn-warning{type: "submit", value: t(:apply)}

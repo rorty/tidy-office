@@ -1,0 +1,8 @@
+- error = @manufacturer.errors.include?(:name)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "name"}= t(:name)
+  %input.form-control{:name => "manufacturer[name]", :type => "text", :value => "#{@manufacturer.name}"}
+  %span.help-block= @manufacturer.errors[:name].first if error
+%input.btn.btn-success{type: "submit", value: t(:save)}
+%a.btn.btn.btn-default{href: url("manufacturers", false)}= t(:cancel)
+

@@ -1,0 +1,40 @@
+- content_for :sidebar do
+  = haml :"devices/action"
+  = haml :"layouts/panel_types", locals: { checked: lambda{|type| (session[:devices_filter] ? session[:devices_filter].split(",").include?(type) : false) }, url: lambda{|p| url("/devices/filter?view=#{p}", false) }}
+
+= haml :"devices/tabs"
+
+.tabs-content
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th
+        %th= t(:code)
+        %th= t(:title)
+        %th= t(:status)
+        %th= t(:place)
+    %tbody#list
+      - unless @devices.empty?
+        - @devices.all.each do |device|
+          = haml :"devices/device", :locals => { device: device }
+      - else
+        = haml :"shared/empty", locals: { colspan: 5 }
+.text-center
+  %ul.pagination#paginate
+    = haml :"shared/paginate", :locals => {collection: @devices, href: lambda{|p| url("/devices?#{build_query(p)}", false)} }
+
+
+
+
+:javascript
+  var searchTimeout;
+  $('#query').on('keydown', function(event) {
+    $el = $(event.target)
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function () { 
+        $.get('/devices?view=#{@view}', {
+        query: $el.val()
+      });
+    }, 500);
+  });
+

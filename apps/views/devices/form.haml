@@ -1,0 +1,82 @@
+%form.tabs-content
+  .row
+    .form-group
+      .col-md-4
+        .form-group
+          %label.control-label{:for => "device_type_id"}= t(:device_type_id)
+          = select_tag nil, id: "device_type_id"
+      .col-md-8
+        - error = @device.errors.include?(:device_model_id)
+        .form-group{class: "#{'has-error' if error}"}
+          %label.control-label{:for => "device_model_id"}= t(:device_model_id)
+          = select_tag "device[device_model_id]", id: "device_model_id", class: "form-control", :selected => @device.device_model_id
+          %span.help-block= @device.errors[:device_model_id].first if error
+  .row
+    .form-group
+      .col-md-2
+        - error = @device.errors.include?(:code)
+        .form-group{class: "#{'has-error' if error}"}
+          %label.control-label{:for => "code"}= t(:code)
+          %input.form-control#code{autocomplete: "off", :name => "device[code]", :type => "text", :value => "#{@device.code}"}
+          %span.help-block= @device.errors[:code].first if error
+      .col-md-3
+        - error = @device.errors.include?(:inventory_number)
+        .form-group{class: "#{'has-error' if error}"}
+          %label.control-label{:for => "inventory_number"}= t(:inventory_number)
+          %input.form-control#inventory_number{autocomplete: "off", :name => "device[inventory_number]", :type => "text", :value => "#{@device.inventory_number}"}
+          %span.help-block= @device.errors[:inventory_number].first if error
+      .col-md-7
+        - error = @device.errors.include?(:place_id)
+        .form-group{class: "#{'has-error' if error}"}
+          %label.control-label{:for => "place_id"}= t(:place_id)
+          %select{name: "device[place_id]", id: "place_id", class: "form-control", :disabled => !@device.new?}
+          %span.help-block= @device.errors[:place_id].first if error
+  .row
+    .form-group  
+      .col-md-12
+        - error = @device.errors.include?(:description)
+        .form-group{class: "#{'has-error' if error}"}
+          %label.control-label{:for => "description"}= t(:description)
+          %textarea.form-control.note_note{rows: "3", name: "device[description]"}= @device.description
+          %span.help-block= @device.errors[:code].first if error
+    %input.btn.btn-success{type: "submit", value: t(:save)}
+    %a.btn.btn.btn-default{href: url("devices", false)}= t(:cancel)
+:javascript
+  var models = #{@device_models.to_json};
+  var $select_model = $('#device_model_id').selectize({});
+  var select_model = $select_model[0].selectize;
+  $('#place_id').selectize({
+    create: true,
+    valueField: 'id',
+    searchField: ['name'],
+    options: #{ @places.asci_tree.to_json },
+    render: {
+      option: function (data, escape) {
+        return '<div class="option prefix" data-prefix="' + escape(data.prefix) + '">' + escape(data.name) + '</div>';
+      },
+      item: function (data, escape) {
+        return '<div class="item">' + escape(data.name) + '</div>';
+      }
+    },
+    onInitialize: function(){
+      this.setValue(#{@device.place_id});
+    }
+  });
+
+
+  var $select_type = $('#device_type_id').selectize({
+      options: models.map(function (d) { return d.group; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).map(function (d) { return ({ text: d, value: d }); }),
+      onChange: function (group) {
+          if (!group.length)
+              return;
+          select_model.clear();    
+          select_model.clearOptions();
+          select_model.addOption(models.filter(function (v) { return v.group === group; }).map(function (d) { return ({ text: d.text, value: d.value }); }))
+      }
+  });
+  var select_type = $select_type[0].selectize;
+  select_type.setValue('#{@device.device_model && @device.type_name}');
+  select_model.setValue('#{@device.device_model_id}')
+  
+
+

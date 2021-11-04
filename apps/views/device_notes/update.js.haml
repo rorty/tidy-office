@@ -1,0 +1,8 @@
+- id_prefix = "note_#{@note.id}"
+- if @note.errors.empty?
+  $('##{id_prefix}').replaceWith('#{ escape_javascript haml :"device_notes/note", locals: { note: @note } }');
+  $('##{id_prefix}').effect("highlight", { duration:1500 });
+- else
+  $('##{id_prefix}').html('#{ escape_javascript haml :"device_notes/edit", locals: { note: @note } }');
+  $('##{id_prefix}').effect("shake", { duration:250, distance: 6 });
+  $('#note_note').focus();

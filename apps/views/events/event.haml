@@ -1,0 +1,8 @@
+%tr
+  %td
+    - type = event.type_id.to_s(2)
+    %span.pull-right.text-muted= "#{l(event.created_at, format: :long)}"
+    - if type[-1] == "1"
+      = "#{t("event_#{format("%04d", type)}", code: event.cartridge.code, title: "<a href=\"#{url("/cartridges/show/#{event.cartridge_id}", false)}\">#{event.cartridge.title}</a>", place: event.place_id && "<a href=\"#{url("/places/show/#{event.place_id}", false)}\">#{event.place.title}</a>")}, #{t(:ago, value: time_ago_in_words(event.created_at))}"
+    - else
+      = "#{t("event_#{format("%04d", type)}", code: event.device.code, title: "<a href=\"#{url("/devices/show/#{event.device_id}", false)}\">#{event.device.title}</a>", place: event.place_id && "<a href=\"#{url("/places/show/#{event.place_id}", false)}\">#{event.place.title}</a>")}, #{t(:ago, value: time_ago_in_words(event.created_at))}"

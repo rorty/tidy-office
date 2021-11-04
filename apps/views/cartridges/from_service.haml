@@ -1,0 +1,52 @@
+- content_for :sidebar do
+  = haml :"layouts/panel_event", :locals => { :events => Event.event_cartridges(@cartridges.map(&:id)) }
+%form{:action => url("cartridges/from_service", false), :method => "post"}
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:from_service)
+    %table.table
+      %thead
+        %tr
+          %th= t(:code)
+          %th.text-center= t(:cartridge)
+          %th.text-center= t(:refill)
+          %th.text-center= t(:photo_drum) 
+          %th.text-center= t(:raquel) 
+          %th.text-center= t(:chip)
+          %th.text-center= t(:magnetic_shaft)  
+          %th.text-center= t(:charge_roller)
+          %th.text-center= t(:dosing_blade)
+          %th.text-center= t(:clean)
+          %th.text-center= t(:mechanism_repair)
+      %tbody  
+      - @cartridges.each do |cartridge|
+        %input{:name => "cartridges[#{cartridge.id}][init]", :type => "hidden", :value => "0"}
+        %tr
+          %td
+            %a{:href => url("cartridges/show/#{cartridge.id}", false)}= cartridge.code
+          %td= cartridge.title
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][refill]", :type => "checkbox", :value => "1"}
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][photo_drum]", :type => "checkbox", :value => "1"}
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][raquel]", :type => "checkbox", :value => "1"}
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][chip]", :type => "checkbox", :value => "1"}
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][magnetic_shaft]", :type => "checkbox", :value => "1"}
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][charge_roller]", :type => "checkbox", :value => "1"}
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][dosing_blade]", :type => "checkbox", :value => "1"}
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][clean]", :type => "checkbox", :value => "1"}
+          %td.text-center
+            %input{:name => "cartridges[#{cartridge.id}][mechanism_repair]", :type => "checkbox", :value => "1"}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:panel_contract)
+    .panel-body
+      = select_tag :contract_id, class: "form-control", :collection => @contracts, include_blank: t(:select_blank), :fields => [:name, :id]
+  %input.btn.btn-warning{"data-disable-with": t(:apply), type: "submit", value: t(:apply)}

@@ -1,0 +1,54 @@
+
+%form.tabs-content
+  .row
+    .form-group
+      .col-md-4
+        .form-group
+          %label.control-label{:for => "cartridge_type_id"}= t(:cartridge_type_id)
+          = select_tag nil, id: "cartridge_type_id"
+      .col-md-8
+        - error = @cartridge.errors.include?(:cartridge_model_id)
+        .form-group{class: "#{'has-error' if error}"}
+          %label.control-label{:for => "cartridge_model_id"}= t(:cartridge_model_id)
+          = select_tag "cartridge[cartridge_model_id]", id: "cartridge_model_id", class: "form-control", :selected => @cartridge.cartridge_model_id
+          %span.help-block= @cartridge.errors[:cartridge_model_id].first if error
+  .row
+    .form-group
+      .col-md-12
+        - error = @cartridge.errors.include?(:code)
+        .form-group{class: "#{'has-error' if error}"}
+          %label.control-label{:for => "code"}= t(:code)
+          %input.form-control#code{autocomplete: "off", :name => "cartridge[code]", :type => "text", :value => "#{@cartridge.code}"}
+          %span.help-block= @cartridge.errors[:code].first if error
+
+  .row
+    .form-group  
+      .col-md-12
+        - error = @cartridge.errors.include?(:description)
+        .form-group{class: "#{'has-error' if error}"}
+          %label.control-label{:for => "description"}= t(:description)
+          %textarea.form-control.note_note{rows: "3", name: "cartridge[description]"}= @cartridge.description
+          %span.help-block= @cartridge.errors[:code].first if error
+    %input.btn.btn-success{type: "submit", value: t(:save)}
+    %a.btn.btn.btn-default{href: url("cartridges", false)}= t(:cancel)
+:javascript
+  var models = #{@cartridge_models.to_json};
+  var $select_model = $('#cartridge_model_id').selectize({});
+  var select_model = $select_model[0].selectize;
+
+  var $select_type = $('#cartridge_type_id').selectize({
+      options: models.map(function (d) { return d.group; }).filter(function (v, i, a) { return a.indexOf(v) === i; }).map(function (d) { return ({ text: d, value: d }); }),
+      onChange: function (group) {
+          if (!group.length)
+              return;
+          select_model.disable();
+          select_model.clear();    
+          select_model.clearOptions();
+          select_model.addOption(models.filter(function (v) { return v.group === group; }).map(function (d) { return ({ text: d.text, value: d.value }); }))
+          select_model.enable();
+      }
+  });
+  var select_type = $select_type[0].selectize;
+  select_type.setValue('#{@cartridge.cartridge_model && @cartridge.type_name}');
+  select_model.setValue('#{@cartridge.cartridge_model_id}')
+

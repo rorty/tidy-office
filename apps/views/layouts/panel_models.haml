@@ -1,0 +1,7 @@
+- content_for :sidebar do
+  .list-group
+    - %w[places device_types cartridge_types manufacturers  device_models cartridge_models  contracts  ].each do |model|
+      - if request.path_info =~ /^\/#{model}/
+        %a.list-group-item.active{:href => url(model, false)}= t(model)
+      -else
+        %a.list-group-item{:href => url(model, false)}= t(model)

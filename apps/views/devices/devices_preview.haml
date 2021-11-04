@@ -1,0 +1,20 @@
+%table.table
+  %thead
+    %tr
+      %th= t(:code)
+      %th= t(:title)
+      %th= t(:status)
+      %th= t(:place)
+  %tbody  
+  - devices.each do |device|
+    %tr
+      %td
+        %span= device.code
+      %td
+        %span.media-object.small.text-muted= "#{device.type_name}"
+        %a{:href => url("devices/show/#{device.id}", false)}= device.model_name
+      %td
+        %span.label{class: "label-#{{reserved: 'success', installed: 'warning', dismantled: 'default', serviced: 'primary', faulty: 'danger', written_off: 'danger' }[device.status.to_sym]}"}= t("status_#{device.status}")
+      %td
+        %span.media-object.small.text-muted= "#{t(:ago, value: time_ago_in_words(device.changed_at))}"
+        %a.media-object{:href => url("places/show/#{device.place.id}", false)}= device.place.title

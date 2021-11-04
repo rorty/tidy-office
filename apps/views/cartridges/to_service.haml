@@ -1,0 +1,15 @@
+- content_for :sidebar do
+  = haml :"layouts/panel_event", :locals => { :events => Event.event_cartridges(@cartridges.map(&:id)) }
+%form{:action => url("cartridges/to_service", false), :method => :post}
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  %input{:type => "hidden", :name => "cartridge_ids", :value => @cartridges.map(&:id).join(",")}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:to_service)
+    = haml :"cartridges/cartridges_preview", :locals => { :cartridges => @cartridges }
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t("contract")
+    .panel-body
+      = select_tag "contract[contract_id]", class: "form-control", :collection => @contracts, include_blank: t(:select_blank), :fields => [:name, :id]
+  %input.btn.btn-warning{type: "submit", value: t(:apply)}

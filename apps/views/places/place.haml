@@ -1,0 +1,15 @@
+%tr
+  %td
+    %a{href: url("places/show/#{place.id}", false)}= place.name
+  %td.text-center
+    - if place.warehouse
+      %span.glyphicon.glyphicon-ok
+  %td.text-center
+    - if place.disabled
+      %span.glyphicon.glyphicon-ok
+  %td
+    .btn-group
+      %a.btn.btn-xs.btn-info{href: url("places/edit/#{place.id}", false)}
+        %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+      %a.btn.btn-xs.btn-danger{href: url("places/destroy/#{place.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete"}
+        %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"} 

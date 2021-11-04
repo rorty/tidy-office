@@ -1,0 +1,5 @@
+.list-group
+  %a.list-group-item{class: ("active" if request.path_info =~ /^\/reports\/1/), :href => url("reports/1", false)}= "Итоги всех картриджей"
+  %a.list-group-item{class: ("active" if request.path_info =~ /^\/reports\/2/), :href => url("reports/2", false)}= "Итоги всех устройств"
+  %a.list-group-item{class: ("active" if request.path_info =~ /^\/reports\/3/), :href => url("reports/3", false)}= "Динамика картриджей"
+  %a.list-group-item{class: ("active" if request.path_info =~ /^\/reports\/4/), :href => url("reports/4", false)}= "Динамика устройств"

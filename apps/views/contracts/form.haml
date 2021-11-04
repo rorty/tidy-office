@@ -1,0 +1,30 @@
+- error = @contract.errors.include?(:name)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "name"}= t(:name)
+  %input.form-control{:name => "contract[name]", :type => "text", :value => "#{@contract.name}"}
+  %span.help-block= @contract.errors[:name].first if error
+- error = @contract.errors.include?(:type)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "type"}= t(:type)
+  %input.form-control#type{:name => "contract[type]", :type => "text", :value => "#{@contract.type}"}
+  %span.help-block= @contract.errors[:type].first if error
+- error = @contract.errors.include?(:description)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "description"}= t(:description)
+  %textarea.form-control#description{:name => "contract[description]", :rows => "3", :value => "#{@contract.type}"}
+  %span.help-block= @contract.errors[:description].first if error
+- error = @contract.errors.include?(:enabled)
+.checkbox{class: "#{'has-error' if error}"}
+  %label
+    %input{:name => "contract[enabled]", :type => "hidden", :value => "0"}
+    - if @contract.enabled
+      %input{:checked => "checked" , :name => "contract[enabled]", :type => "checkbox", :value => "1"}
+    - else
+      %input{:name => "contract[enabled]", :type => "checkbox", :value => "1"}
+    = t(:enabled)
+
+%input.btn.btn-success{type: "submit", value: t(:save)}
+%a.btn.btn.btn-default{href: url("contracts", false)}= t(:cancel)
+
+
+

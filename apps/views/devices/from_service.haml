@@ -1,0 +1,31 @@
+- content_for :sidebar do
+  = haml :"layouts/panel_event", :locals => { :events => Event.event_devices(@devices.map(&:id)) }
+%form{:action => url("devices/from_service", false), :method => :post}
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:from_service)
+    %table.table
+      %thead
+        %tr
+          %th= t(:code)
+          %th.text-center= t(:name)
+          %th.text-center= t(:component)
+          %th.text-center= t(:nodal)
+      %tbody 
+        - @devices.each do |device|
+          %tr
+            %td
+              %input{:name => "devices[#{device.id}][init]", :type => "hidden", :value => "0"}
+              %a{:href => url("devices/show/#{device.id}", false)}= device.code
+            %td= device.title
+            %td.text-center
+              %input{:name => "devices[#{device.id}][component]", :type => "checkbox", :value => "1"}
+            %td.text-center
+              %input{:name => "devices[#{device.id}][nodal]", :type => "checkbox", :value => "1"}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:panel_contract)
+    .panel-body
+      = select_tag :contract_id, class: "form-control", :collection => @contracts, include_blank: t(:select_blank), :fields => [:name, :id]
+  %input.btn.btn-warning{"data-disable-with": t(:apply), type: "submit", value: t(:apply)}

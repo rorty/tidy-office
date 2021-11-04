@@ -1,0 +1,5 @@
+- id_prefix = "cartridge_#{@note.cartridge_id}"
+- if @note.valid?
+  $('#new_note').after('#{ escape_javascript (haml :"cartridge_notes/note", locals: { note: @note }) }');
+  $('##{id_prefix}_post_new_note').val('');
+  $('##{id_prefix}_post_new_note').focus();

@@ -1,0 +1,13 @@
+%tr
+  %td= device_model.device_type.name
+  %td= device_model.manufacturer.name
+  %td= device_model.name
+  %td.text-center
+    - if device_model.disabled
+      %span.glyphicon.glyphicon-ok
+  %td
+    .btn-group
+      %a.btn.btn-xs.btn-info{href: url("device_models/edit/#{device_model.id}", false)}
+        %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+      %a.btn.btn-xs.btn-danger{href: url("device_models/destroy/#{device_model.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete"}
+        %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"} 

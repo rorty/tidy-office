@@ -1,0 +1,9 @@
+- haml :"layouts/panel_models"
+%ul.nav.nav-tabs
+  %li
+    %a{:href => url("contracts", false)}= t(:list)
+  %li.active
+    %a{:href => url("contracts/new", false)}= t(:new)
+.tabs-content
+  %form{:action => url("contracts/create", false), :method => 'post'}
+    = haml :"contracts/form"

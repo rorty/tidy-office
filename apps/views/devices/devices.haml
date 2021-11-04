@@ -1,0 +1,15 @@
+%table.table#list
+  %thead
+    %tr
+      %th
+      %th= t(:code)
+      %th= t(:title)
+      - if status
+        %th= t(:status)
+      %th= t(:cartridges)
+      %th= t(:place)
+      %th= t(:changed_at)
+  %tbody#devices
+  - @devices.all.each do |device|
+    = haml :"devices/device", :locals => { device: device }
+

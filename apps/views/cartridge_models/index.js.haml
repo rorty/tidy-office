@@ -1,0 +1,5 @@
+$('#paginate').html('#{ escape_javascript haml :"shared/paginate", :locals => { collection: @cartridge_models, href: lambda{|p| url("/cartridge_models?#{build_query(p) }", false)}}}');
+- if @cartridge_models.any?
+  $('#cartridge_models').html('#{ escape_javascript @cartridge_models.all.map{|cartridge_model| haml :"cartridge_models/cartridge_model", locals: { cartridge_model: cartridge_model }}.join("") }');
+- else
+  $('#cartridge_models').html('#{ escape_javascript haml :"shared/empty", locals: { colspan: 2 } }');

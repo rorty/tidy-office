@@ -1,0 +1,25 @@
+%table.table
+  %thead
+    %tr
+      %th= t(:code)
+      %th= t(:title)
+      %th= t(:status)
+      %th= t(:place)
+  %tbody  
+  - cartridges.each do |cartridge|
+    %tr
+      %td
+        %span= cartridge.code
+      %td
+        %span.media-object.small.text-muted= cartridge.type_name
+        %a{:href => url("cartridges/show/#{cartridge.id}", false)}= cartridge.model_name
+      %td
+        %span.label{class: "label-#{{reserved: 'success', issued: 'warning', accepted: 'default', serviced: 'primary', faulty: 'danger', written_off: 'danger' }[cartridge.status.to_sym]}"}= t("status_#{cartridge.status}")
+      %td
+        %span.media-object.small.text-muted= t(:ago, value: time_ago_in_words(cartridge.changed_at))
+        - unless cartridge.device.try(:place) 
+          = t(:undefined)
+        - else 
+          %a{:href => url("places/show/#{cartridge.device.place.id}", false)}= cartridge.device.place.title
+        
+

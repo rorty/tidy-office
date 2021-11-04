@@ -1,0 +1,8 @@
+%tr
+  %td= cartridge_type.name
+  %td
+    .btn-group
+      %a.btn.btn-xs.btn-info{href: url("cartridge_types/edit/#{cartridge_type.id}", false)}
+        %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+      %a.btn.btn-xs.btn-danger{href: url("cartridge_types/destroy/#{cartridge_type.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete"}
+        %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"} 

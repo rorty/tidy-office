@@ -1,0 +1,5 @@
+$('#paginate').html('#{ escape_javascript haml :"shared/paginate", :locals => {collection: @places, href: lambda{|p| url("/places?#{build_query(p)}", false)} } }');
+- if @places.any?
+  $('#places').html('#{ escape_javascript @places.all.map{|place| haml :"places/place", locals: { place: place }}.join("") }');
+- else
+  $('#places').html('#{ escape_javascript haml :"shared/empty", locals: { colspan: 2 } }');

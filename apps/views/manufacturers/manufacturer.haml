@@ -1,0 +1,8 @@
+%tr
+  %td= manufacturer.name
+  %td
+    .btn-group
+      %a.btn.btn-xs.btn-info{href: url("manufacturers/edit/#{manufacturer.id}", false)}
+        %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+      %a.btn.btn-xs.btn-danger{href: url("manufacturers/destroy/#{manufacturer.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete"}
+        %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"} 

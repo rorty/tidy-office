@@ -1,0 +1,20 @@
+- content_for :sidebar do
+  = haml :"reports/action"
+
+= haml :"reports/tabs"
+
+.tabs-content
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th= t(:title)
+        - @action.each do |head|
+          %th= t(head)
+        %th= t(:total)
+    %tbody
+      - @totals.each do |total|
+        %tr
+          %td= total[:title]
+          - @action.each do |item|
+            %td= total[:total][item.to_sym]
+          %td= total[:total][:count]

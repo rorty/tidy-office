@@ -1,0 +1,6 @@
+%ul.tree
+  - places.each do |place|
+    %li.item
+      %a{href: url("places/show/#{place.id}", false)}= place.name
+      - if place.children.present?
+        = haml :"places/children", locals: { places: place.children }

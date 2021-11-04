@@ -1,0 +1,64 @@
+- content_for :sidebar do
+  - matrix = matrix_action[Device::ALLOWED_VIEWS_DEVICE.index(@device.status == "faulty" ? "dismantled" : @device.status)]
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title= t(:panel_info)
+    %ul.list-group
+      %li.list-group-item 
+        %span.media-object.small.text-muted= t(:status)
+        %span= t("status_#{@device.status}")
+      %li.list-group-item 
+        %span.media-object.small.text-muted= t(:code)
+        %span= @device.code    
+      %li.list-group-item
+        %span.media-object.small.text-muted= t(:device_type_id)
+        %span= @device.type_name
+      %li.list-group-item 
+        %span.media-object.small.text-muted= t(:device_model_id)
+        %span= @device.model_name
+      %li.list-group-item
+        %span.media-object.small.text-muted= t(:place_id)
+        %a{href: url("places/show/#{@device.place.id}", false)}= @device.place.title
+         
+      - if @device.inventory_number.present?  
+        %li.list-group-item
+          %span.media-object.small.text-muted= t(:inventory_number)
+          %span= @device.inventory_number
+  .list-group
+    - %w[to_reserve to_install to_dismantle to_service from_service to_faulty to_write_off].each_with_index do |action, index|
+      - if matrix[index]
+        %a.list-group-item{:href => url("devices/#{action}?device_ids=#{@device.id}", false)}= t(action)
+
+
+  .list-group
+    %a.list-group-item{:href => url("devices/edit/#{@device.id}", false)}= t(:edit)
+    %a.list-group-item{:href => url("devices/destroy/#{@device.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete"}= t(:destroy)
+
+
+
+-if @device.description.present?
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title= t(:description)
+    .panel-body  
+      = simple_format(@device.description.gsub("\n", " "))  
+
+  
+
+- unless @device.cartridge.empty?
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title= t(:panel_curent_cartridges)
+    = haml :"cartridges/cartridges_preview", :locals => { :cartridges => @device.cartridge }
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title= t(:panel_notes)
+  %ul.list-group
+    = haml :"device_notes/new", :locals => { notetable: @device }
+    - unless @device.device_note.empty?
+      - @device.device_note.each do |note|
+        = haml :"device_notes/note", :locals => { note: note }
+- unless @services.empty?
+  = haml :"layouts/panel_services", locals: { actions: %w[component nodal] }
+- unless @device.event.empty?
+  = haml :"layouts/panel_event", :locals => { events: @device.event }

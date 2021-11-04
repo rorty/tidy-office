@@ -1,0 +1,142 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.tabs-content {
+  padding: 4px 0;
+}
+.row-action-header {
+  width: 70px;
+  text-align: center;
+}
+
+.row-code-header {
+  width: 90px;
+  text-align: center;
+}
+
+li.list-group-item .checkbox {
+  user-select: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+.bs-callout-danger {
+  border-left-color: #ce4844;
+}
+
+.bs-callout {
+  /* padding: 20px; */
+  /* margin: 20px 0; */
+  /* border: 1px solid #eee; */
+  border-left-width: 2px;
+  /* border-radius: 3px; */
+}
+
+table td {
+  vertical-align: middle !important;
+}
+
+th.rotated-text {
+  height: 140px;
+  white-space: nowrap;
+  padding: 0 !important;
+}
+
+th.rotated-text > div {
+  transform:
+      translate(13px, 0px)
+      rotate(310deg);
+  width: 30px;
+}
+
+th.rotated-text > div > span {
+  padding: 5px 10px;
+}
+
+
+.tree, .tree ul {
+  margin-left:-1em;
+  padding:0;
+  list-style:none
+}
+.tree ul {
+  margin-left:1em;
+  position:relative
+}
+.tree ul ul {
+  margin-left:5px
+}
+
+.tree ul:before {
+  content:"";
+  display:block;
+  width:0;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  border-left:1px solid
+}
+.tree li {
+  margin:0;
+  padding-left:15px;
+  /* margin-bottom:5px; */
+  /* margin-top: -5px; */
+  line-height:2.0em;
+  position:relative
+}
+.tree ul li:before {
+  content:"";
+  display:block;
+  width: 10px;
+  height:0;
+  border-top:1px solid;
+  margin-top:-1px;
+  position:absolute;
+  top:1.0em;
+  left:0
+}
+.tree ul li:last-child:before {
+  background:#fff;
+  height:auto;
+  top:1.0em;
+  bottom:0
+}
+
+
+.tree li button, .tree li button:active, .tree li button:focus {
+  text-decoration: none;
+  color:#369;
+  border:none;
+  background:transparent;
+  margin:0px 0px 0px 0px;
+  padding:0px 0px 0px 0px;
+  outline: 0;
+} 
+
+.item:hover .tools {
+  visibility: visible;
+}
+
+.item .tools {
+  visibility: hidden;
+  float: right;
+}
+
+
+
+/* .pagination{
+  text-align: center;
+} */
+
+.option.prefix:before {
+  content: attr(data-prefix);
+  color: #aaa;
+  font-family: "Consolas";
+  white-space: pre;
+}
+
+

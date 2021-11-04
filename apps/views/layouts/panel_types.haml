@@ -1,0 +1,9 @@
+
+%ul.list-group
+  - @types.each do |type|
+    - onclick = "var query = $('#query').val(); $.post('#{url.call(@view)}', { filter: this.value, checked: this.checked, query: query }, function () {});"
+    %li.list-group-item
+      .checkbox
+        %label
+          %input.list-checkbox{checked: checked.call(type.id.to_s), :onclick => onclick, :name => "filters[]", :type => "checkbox", :value => "#{type.id}"}
+          = type.name

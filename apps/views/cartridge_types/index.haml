@@ -1,0 +1,31 @@
+= haml :"layouts/panel_models"
+%ul.nav.nav-tabs
+  %li.active
+    %a{:href => url("cartridge_types", false)}= t(:list)
+  %li
+    %a{:href => url("cartridge_types/new", false)}= t(:new)
+.tabs-content
+  %table.table
+    %thead
+      %tr
+        %th= t(:name)
+        %th.row-action-header
+    %tbody#cartridge_types
+      - @cartridge_types.each do |cartridge_type|
+        = haml :"cartridge_types/cartridge_type", :locals => { cartridge_type: cartridge_type }
+
+.text-center
+  %ul.pagination#paginate
+    = haml :"shared/paginate", :locals => {collection: @cartridge_types, href: lambda{|p| url("/cartridge_types?#{build_query(p)}", false)} }
+
+:javascript
+  var searchTimeout;
+  $('#query').on('keydown', function(event) {
+    $el = $(event.target)
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function () { 
+        $.get('/cartridge_types', {
+        query: $el.val()
+      });
+    }, 500);
+  });

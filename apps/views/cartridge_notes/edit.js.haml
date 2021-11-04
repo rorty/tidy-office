@@ -1,0 +1,5 @@
+- id = "note_#{@note.id}"
+- if params[:cancel] == "true"
+  $('##{id}').replaceWith('#{ escape_javascript haml :"cartridge_notes/note", locals: { note: @note } }');
+- else
+  $('##{id}').html('#{ escape_javascript haml :"cartridge_notes/edit", locals: { note: @note } }');

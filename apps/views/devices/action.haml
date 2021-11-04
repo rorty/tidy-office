@@ -1,0 +1,10 @@
+- matrix = matrix_action[Device::ALLOWED_VIEWS_DEVICE.index(@view)]
+.list-group
+  - %w[to_reserve to_install to_dismantle to_service from_service to_faulty to_write_off].each_with_index do |action, index|
+    - if matrix[index]
+      %a.list-group-item{:href => url("devices/#{action}", false), :onclick => "this.href = this.href.split('?')[0] + '?device_ids='+encodeURI(tidyoffice.checked());"}= t(action)
+.list-group
+  %a.list-group-item{:href => url("devices/new", false)}= t(:new)
+  %a.list-group-item{:href => "#", :onclick => "tidyoffice.select_all_checked(true);"}= t(:select_all)
+  %a.list-group-item{:href => "#", :onclick => "tidyoffice.select_all_checked(false);"}= t(:deselect_all)
+  %a.list-group-item{:href => url("devices/to_print", false), target: "_blank", :onclick => "this.href = this.href.split('?')[0] + '?device_ids='+encodeURI(tidyoffice.checked());"}= t(:print)

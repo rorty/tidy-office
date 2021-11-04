@@ -1,0 +1,10 @@
+- content_for :sidebar do
+  = haml :"layouts/panel_event", :locals => { :events => Event.event_cartridges(@cartridges.map(&:id)) }
+%form{:action => url("cartridges/to_accept", false), :method => :post}
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  %input{:type => "hidden", :name => "cartridge_ids", :value => @cartridges.map(&:id).join(",")}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t("to_accept")
+    = haml :"cartridges/cartridges_preview", :locals => { :cartridges => @cartridges }
+  %input.btn.btn-warning{type: "submit", value: t(:apply)}

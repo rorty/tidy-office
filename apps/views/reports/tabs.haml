@@ -1,0 +1,4 @@
+%ul.nav.nav-tabs
+  - Event::ALLOWED_VIEWS_EVENTS.each do |tab|
+    %li{class: ("active" if tab == @view)}
+      %a{href: url("reports?view=#{tab}", false)}= t(tab)

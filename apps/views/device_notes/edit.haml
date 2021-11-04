@@ -1,0 +1,8 @@
+- id_prefix = "note_#{note.id}"
+%form{"accept-charset": "UTF-8", action: url("device_notes/#{note.id}", false), "data-remote": "true", method: "post" }
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  %input{type: "hidden", name: "note[device_id]", value: note.device_id}
+  .form-group
+    %textarea.form-control.note_note{rows: "3", name: "note[note]"}= note.note
+  %input.btn.btn-xs.btn-default{type: "submit", value: t(:save)}
+  %a.btn.btn-xs.btn-default{href: url("device_notes/edit/#{note.id}?cancel=true", false), "data-remote": "true"}= t(:cancel)

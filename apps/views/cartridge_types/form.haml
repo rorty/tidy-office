@@ -1,0 +1,9 @@
+- error = @cartridge_type.errors.include?(:name)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "name"}= t(:name)
+  %input.form-control{:name => "cartridge_type[name]", :type => "text", :value => "#{@cartridge_type.name}"}
+  %span.help-block= @cartridge_type.errors[:name].first if error
+
+  
+%input.btn.btn-success{type: "submit", value: t(:save)}
+%a.btn.btn.btn-default{href: url("cartridge_models", false)}= t(:cancel)

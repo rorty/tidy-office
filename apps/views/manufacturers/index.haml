@@ -1,0 +1,31 @@
+= haml :"layouts/panel_models"
+%ul.nav.nav-tabs
+  %li.active
+    %a{:href => url("manufacturers", false)}= t(:list)
+  %li
+    %a{:href => url("manufacturers/new", false)}= t(:new)
+.tabs-content
+  %table.table
+    %thead
+      %tr
+        %th= t(:title)
+        %th.row-action-header
+    %tbody#manufacturers
+      - @manufacturers.each do |manufacturer|
+        = haml :"manufacturers/manufacturer", :locals => { manufacturer: manufacturer }
+.text-center
+  %ul.pagination#paginate
+    = haml :"shared/paginate", :locals => {collection: @manufacturers, href: lambda{|p| url("/manufacturers?#{build_query(p)}", false)} }
+
+:javascript
+  var searchTimeout;
+  $('#query').on('keydown', function(event) {
+    $el = $(event.target)
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function () { 
+        $.get('/manufacturers', {
+        query: $el.val()
+      });
+    }, 500);
+  });
+

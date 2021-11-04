@@ -1,0 +1,57 @@
+- error = @place.errors.include?(:name)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "name"}= t(:name)
+  %input.form-control{:name => "place[name]", :type => "text", :value => "#{@place.name}"}
+  %span.help-block= @place.errors[:name].first if error
+
+- error = @place.errors.include?(:parent_id)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "name"}= t(:parent_id)
+  %select{name: "place[parent_id]", class: "form-control", id: "place_id", placeholder: t(:select_blank), rel: "nofollow"}
+  %span.help-block= @place.errors[:parent_id].first if error
+
+
+- error = @place.errors.include?(:description)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "description"}= t(:description)
+  %textarea.form-control.note_note{rows: "3", name: "place[description]"}= @place.description
+  %span.help-block= @place.errors[:code].first if error
+
+- error = @place.errors.include?(:warehouse)
+.form-group 
+  .checkbox{class: "#{'has-error' if error}"}
+    %label
+      %input{:name => "place[warehouse]", :type => "hidden", :value => "0"}
+      %input{:checked => ("checked" if @place.warehouse) , :name => "place[warehouse]", :type => "checkbox", :value => "1"}
+      = t(:warehouse)
+    %span.help-block= @place.errors[:warehouse].first if error
+
+- error = @place.errors.include?(:disabled)
+.form-group 
+  .checkbox{class: "#{'has-error' if error}"}
+    %label
+      %input{:name => "place[disabled]", :type => "hidden", :value => "0"}
+      %input{:checked => ("checked" if @place.disabled) , :name => "place[disabled]", :type => "checkbox", :value => "1"}
+      = t(:disabled)
+    %span.help-block= @place.errors[:disabled].first if error
+%input.btn.btn-success{type: "submit", value: t(:save)}
+%a.btn.btn.btn-default{href: url("places", false)}= t(:cancel)
+
+:javascript
+  $('#place_id').selectize({
+      valueField: 'id',
+      searchField: ['name'],
+      options: #{ Place.asci_tree.to_json },
+      render: {
+          option: function (data, escape) {
+              return '<div class="option prefix" data-prefix="' + escape(data.prefix) + '">' + escape(data.name) + '</div>';
+          },
+          item: function (data, escape) {
+              return '<div class="item">' + escape(data.name) + '</div>';
+          }
+      },
+      onInitialize: function(){
+        this.setValue(#{@place.parent_id});
+      }
+  });
+

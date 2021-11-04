@@ -1,0 +1,53 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %title= @title.present? ? "#{@title} | #{settings.title}" : settings.title
+    %link{:href => "/favicon.ico", :rel => "icon", :type => "image/ico"}
+    %link{:href => "/stylesheets/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "/stylesheets/selectize.css", :rel => "stylesheet"}
+    %link{:href => "/stylesheets/selectize.bootstrap3.css", :rel => "stylesheet"}
+    %link{:href => "/stylesheets/application.css", :rel => "stylesheet"}
+    %script{:src => "/javascripts/jquery-3.3.1.min.js", :type => "text/javascript"}
+    %script{:src => "/javascripts/bootstrap.min.js", :type => "text/javascript"}
+    %script{:src => "/javascripts/rails-ujs.js", :type => "text/javascript"}
+    %script{:src => "/javascripts/selectize.min.js", :type => "text/javascript"}
+  %body
+    .container
+      %nav.navbar.navbar-default
+        .container-fluid
+          .navbar-header
+            %a.navbar-brand{:href => "/"}
+              %stap{class: "glyphicon glyphicon-book"}
+              = settings.title
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav
+              %li{class: ("active" if request.path_info =~ /^\/cartridges/)}
+                %a{href: url("/cartridges", false)}
+                  = t(:tab_cartridges)
+              %li{class: ("active" if request.path_info =~ /^\/devices/)}
+                %a{href: url("/devices", false)}
+                  = t(:tab_devices)
+              %li{class: ("active" if request.path_info =~ /^\/places|cartridge_models|device_models|device_types|cartridge_types|contracts|manufacturers/)}
+                %a{href: url("/places", false)}
+                  = t(:tab_models)
+              %li{class: ("active" if request.path_info =~ /^\/events/)}
+                %a{href: url("/events", false)}
+                  = t(:tab_events)
+              %li{class: ("active" if request.path_info =~ /^\/reports/)}
+                %a{href: url("/reports", false)}
+                  = t(:tab_reports)
+            .navbar-form.navbar-right
+              .form-group
+                %input.form-control#query{autocomplete: "off", :placeholder => "Поиск", :type => "text"}
+      .main-wrapper
+        ={:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe
+        .row
+          .col-md-3
+            = yield_content :sidebar
+          .col-md-9= yield
+      .footer.text-center
+        %a{href: "https://github.com/rorty"} © 2021 О Tidy Office
+    %script{:src => "/javascripts/application.js", :type => "text/javascript"}

@@ -1,0 +1,18 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title=t(:panel_service)
+  %table.table
+    %thead
+      %tr
+        %th= t(:created_at)
+        - actions.each do |action|
+          %th.text-center= t(action)
+    %tbody  
+      - @services.each do |service|
+        - action = service.action ? service.action.to_s(2) : "0"
+        %tr
+          %td= l(service.created_at)
+          - actions.each_with_index do |_, index|
+            %td.text-center
+              - if action[(index + 1)*-1] == "1"
+                %span.glyphicon.glyphicon-ok

@@ -1,0 +1,15 @@
+- content_for :sidebar do
+  = haml :"events/action"
+  %ul.list-group
+    = haml :"layouts/panel_types", locals: { checked: lambda{|type| (session[@type] ? session[@type].split(",").include?(type) : false) }, url: lambda{|p| url("/events/filter?view=#{p}", false) }}
+= haml :"events/tabs"
+.tabs-content
+  %table.table
+    %thead
+      %tr
+        %th= t(:title)
+    %tbody#list
+      - @events.all.each do |event|
+        = haml :"events/event", locals: {event: event}
+%ul.pagination#paginate
+  = haml :"shared/paginate", :locals => {collection: @events, href: lambda{|p| url("/events?#{build_query(p)}", false)} }

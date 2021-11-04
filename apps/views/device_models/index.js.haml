@@ -1,0 +1,5 @@
+$('#paginate').html('#{ escape_javascript haml :"shared/paginate", :locals => {collection: @device_models, href: lambda{|p| url("/device_models?#{build_query(p)}", false)} } }');
+- if @device_models.any?
+  $('#device_models').html('#{ escape_javascript @device_models.all.map{|device_model| haml :"device_models/device_model", locals: { device_model: device_model }}.join("") }');
+- else
+  $('#device_models').html('#{ escape_javascript haml :"shared/empty", locals: { colspan: 2 } }');

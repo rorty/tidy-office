@@ -1,0 +1,24 @@
+- error = @cartridge_model.errors.include?(:manufacturer_id)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "manufacturer_id"}= t(:manufacturer_id)
+  = select_tag "cartridge_model[manufacturer_id]", id: "manufacturer_id", class: "form-control", :selected => @cartridge_model.manufacturer_id, :collection => @manufacturers, :fields => [:name, :id]
+- error = @cartridge_model.errors.include?(:name)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "name"}= t(:name)
+  %input.form-control{:name => "cartridge_model[name]", :type => "text", :value => "#{@cartridge_model.name}"}
+  %span.help-block= @cartridge_model.errors[:name].first if error
+- error = @cartridge_model.errors.include?(:description)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "description"}= t(:description)
+  %input.form-control{:name => "cartridge_model[description]", :type => "text", :value => "#{@cartridge_model.description}"}
+  %span.help-block= @cartridge_model.errors[:description].first if error
+- error = @cartridge_model.errors.include?(:yield)
+.form-group{class: "#{'has-error' if error}"}
+  %label.control-label{:for => "yield"}= t(:yield)
+  %input.form-control#yield{:name => "cartridge_model[yield]", :type => "text", :value => "#{@cartridge_model.yield}"}
+  %span.help-block= @cartridge_model.errors[:yield].first if error
+%input.btn.btn-success{type: "submit", value: t(:save)}
+%a.btn.btn.btn-default{href: url("cartridge_models", false)}= t(:cancel)
+
+
+

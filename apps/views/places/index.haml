@@ -1,0 +1,35 @@
+= haml :"layouts/panel_models"
+
+%ul.nav.nav-tabs
+  %li
+    %a{:href => url("places/tree", false)}= t(:tree)
+  %li.active
+    %a{:href => url("places", false)}= t(:list)
+  %li
+    %a{:href => url("places/new", false)}= t(:new)
+.tabs-content
+  %table.table
+    %thead
+      %tr
+        %th= t(:name)
+        %th.text-center= t(:warehouse)
+        %th.text-center= t(:disabled)
+        %th.row-action-header
+    %tbody#places
+      - @places.all.each do |place|
+        = haml :"places/place", :locals => { place: place }
+.text-center
+  %ul.pagination#paginate
+    = haml :"shared/paginate", :locals => {collection: @places, href: lambda{|p| url("/places?#{build_query(p)}", false)} }
+
+:javascript
+  var searchTimeout;
+  $('#query').on('keydown', function(event) {
+    $el = $(event.target)
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function () { 
+        $.get('/places', {
+        query: $el.val()
+      });
+    }, 500);
+  });

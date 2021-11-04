@@ -1,0 +1,5 @@
+$('#paginate').html('#{ escape_javascript haml :"shared/paginate", :locals => { collection: @events, href: lambda{|p| url("/events?#{build_query(p)}", false) } } }');
+- unless @events.empty?
+  $('#list').html('#{ escape_javascript @events.all.map{|event| haml :"events/event", :locals => { event: event } }.join("") }');
+- else
+  $('#list').html('#{ escape_javascript haml :"shared/empty", locals: { colspan: 5 } }');

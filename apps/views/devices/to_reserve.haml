@@ -1,0 +1,31 @@
+- content_for :sidebar do
+  = haml :"layouts/panel_event", :locals => {:events => Event.event_devices(@devices.map(&:id))}
+%form{:action => url("devices/to_reserve", false), :method => :post}
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  %input{:type => "hidden", :name => "device_ids", :value => @devices.map(&:id).join(",")}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:to_reserve)
+    = haml :"devices/devices_preview", :locals => { :devices => @devices }
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:panel_places)
+    .panel-body
+      = select_tag "place[place_id]", class: "form-control", id: "place_id", placeholder: t(:select_blank)
+  %input.btn.btn-warning{type: "submit", value: t(:apply)}
+
+
+:javascript
+  $('#place_id').selectize({
+      valueField: 'id',
+      searchField: ['name'],
+      options: #{ Place.where(warehouse: true).asci_tree.to_json },
+      render: {
+          option: function (data, escape) {
+              return '<div class="option prefix" data-prefix="' + escape(data.prefix) + '">' + escape(data.name) + '</div>';
+          },
+          item: function (data, escape) {
+              return '<div class="item">' + escape(data.name) + '</div>';
+          }
+      }
+  });

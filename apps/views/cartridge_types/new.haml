@@ -1,0 +1,9 @@
+- haml :"layouts/panel_models"
+%ul.nav.nav-tabs
+  %li
+    %a{:href => url("cartridge_types", false)}= t(:list)
+  %li.active
+    %a{:href => url("cartridge_types/new", false)}= t(:new)
+.tabs-content
+  %form{:action => url("cartridge_types/create", false), :method => 'post'}
+    = haml :"cartridge_types/form"

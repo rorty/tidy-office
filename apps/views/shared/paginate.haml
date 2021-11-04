@@ -1,0 +1,14 @@
+- url_params = {}
+- url_params[:query] ||= params[:query] if params[:query]
+- url_params[:view] ||= @view if @view
+%li{class: ("disabled" if collection.first_page?)}
+  %a{"data-remote": true, :href => href.call(url_params.update(page: 1))}
+    %span «
+- windowed_page_numbers(collection.current_page, collection.page_count).each do |page|
+  %li{class: ("active" if page == collection.current_page)}
+    %a{"data-remote": true, :href => href.call(url_params.update(page: page))}= page
+%li{class: ("disabled" if collection.last_page?)}
+  %a{"data-remote": true, :href => href.call(url_params.update(page: collection.page_count))}
+    %span »
+
+    

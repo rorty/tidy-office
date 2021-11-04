@@ -1,0 +1,28 @@
+= haml :"layouts/panel_models"
+%ul.nav.nav-tabs
+  %li.active
+    %a{:href => url("contracts", false)}= t(:list)
+  %li
+    %a{:href => url("contracts/new", false)}= t(:new)
+.tabs-content
+  %table.table
+    %thead
+      %tr
+        %th= t(:title)
+        %th= t(:type)
+        %th.text-center= t(:enabled)
+        %th.row-action-header
+    %tbody  
+      - @contracts.each do |contract|
+        %tr
+          %td= contract.name
+          %td= contract.type 
+          %td.text-center
+            - if contract.enabled
+              %span.glyphicon.glyphicon-ok
+          %td
+            .btn-group
+              %a.btn.btn-xs.btn-info{href: url("contracts/edit/#{contract.id}", false)}
+                %span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+              %a.btn.btn-xs.btn-danger{href: url("contracts/destroy/#{contract.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete"}
+                %span.glyphicon.glyphicon-trash{"aria-hidden" => "true"} 

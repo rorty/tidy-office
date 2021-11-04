@@ -1,0 +1,7 @@
+- truncated = simple_format(truncate(note.note.gsub("\n", " "), length: 500))
+%li.list-group-item{id: "note_#{note.id}"}
+  %p
+    %small= t(:added_note, value: l(note.created_at) )
+  = truncated  
+  %a.btn.btn-xs.btn-default{href: url("cartridge_notes/edit/#{note.id}", false), "data-method" => "get", "data-remote" => "true"}= t(:edit)
+  %a.btn.btn-xs.btn-danger{href: url("cartridge_notes/destroy/#{note.id}", false), "data-confirm" => t(:confirm_delete), :rel => "nofollow", "data-method" => "delete", "data-remote" => "true"}= t(:destroy)

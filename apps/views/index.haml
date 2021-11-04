@@ -1,0 +1,32 @@
+- content_for :sidebar do
+  = haml :"layouts/panel_event", :locals => {:events => Event.events.all}
+.panel.panel-default
+  .panel-heading= t(:panel_cartridges)
+  %table.table
+    %thead
+      %tr
+        %th= t(:title)
+        - %w[reserved issued accepted serviced faulty].each do |head|
+          %th= t(head)
+        %th= t(:total)
+    %tbody
+      - @cartridge_total.each do |cartridge|
+        %tr
+          %td= cartridge[:title]
+          - %w[reserved issued accepted serviced faulty count].each do |item|
+            %td= cartridge[:total][item.to_sym]
+.panel.panel-default
+  .panel-heading= t(:panel_devices)
+  %table.table
+    %thead
+      %tr
+        %th= t(:title)
+        - %w[reserved installed dismantled serviced faulty].each do |head|
+          %th= t(head)
+        %th= t(:total)
+    %tbody
+      - @device_total.each do |device|
+        %tr
+          %td= device[:title]
+          - %w[reserved installed dismantled serviced faulty count].each do |item|
+            %td= device[:total][item.to_sym]

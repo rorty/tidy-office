@@ -1,0 +1,57 @@
+- content_for :sidebar do
+  = haml :"layouts/panel_event", :locals => { :events => Event.event_cartridges(@cartridges.map(&:id)) }
+%form{:action => url("cartridges/to_issue", false), :method => :post}
+  %input{:name => "_method", :type => "hidden", :value => "put"}
+  %input{:type => "hidden", :name => "cartridge_ids", :value => @cartridges.map(&:id).join(",")}
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:to_issue)
+    = haml :"cartridges/cartridges_preview", :locals => { :cartridges => @cartridges }
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:panel_places)
+    .panel-body
+      = select_tag "cartridge[place_id]", class: "form-control", id: "place_id", "data-remote" => true, "data-url" => "/cartridges/current_device", :method => "get", placeholder: t(:select_blank) 
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:panel_curent_devices)
+    %table.table
+      %thead
+        %tr
+          %th
+          %th= t(:code)
+          %th= t(:title)
+          %th= t(:status)
+          %th= t(:cartridges)
+          %th= t(:place)
+      %tbody#current_device
+        = haml :"shared/empty", :locals => { :colspan => 6 }
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title=t(:panel_accepted_curent_cartridges)
+    %table.table
+      %thead
+        %tr
+          %th
+          %th= t(:code)
+          %th= t(:title)
+          %th= t(:status)
+          %th= t(:place)
+      %tbody#current_cartridge
+        = haml :"shared/empty", :locals => { :colspan => 6 }
+  %input.btn.btn-warning{type: "submit", value: t(:apply)}
+
+:javascript
+  $('#place_id').selectize({
+      valueField: 'id',
+      searchField: ['name'],
+      options: #{ Place.asci_tree.to_json },
+      render: {
+          option: function (data, escape) {
+              return '<div class="option prefix" data-prefix="' + escape(data.prefix) + '">' + escape(data.name) + '</div>';
+          },
+          item: function (data, escape) {
+              return '<div class="item">' + escape(data.name) + '</div>';
+          }
+      }
+  });
