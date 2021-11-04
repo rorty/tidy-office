@@ -1,6 +1,6 @@
 # Tidy Office
 Tidy Office – очень простое Web приложение, для учета расходных материалов и оборудования
-
+![Image alt](https://github.com/Rorty/tidy-office/blob/main/public/images/to_issue.PNG)
 
 Возможности:
 - Поиск и фильтрация по типам устройств и картриджей
