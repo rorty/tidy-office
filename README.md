@@ -4,7 +4,7 @@ Tidy Office – очень простое Web приложение, для уч�
 <table border="0">
   <tr>
     <td align="center">
-      <a href="https://github.com/Rorty/tidy-office/blob/main/public/images/devices.png" target="_blank">
+      <a href="https://github.com/Rorty/tidy-office/blob/main/public/images/devices.PNG" target="_blank">
         <img src="https://github.com/Rorty/tidy-office/blob/main/public/images/devices_t.png">
       </a>
       <br />
@@ -18,21 +18,21 @@ Tidy Office – очень простое Web приложение, для уч�
       <p>Модели устройств</p>
     </td>
     <td align="center">
-      <a href="https://github.com/Rorty/tidy-office/blob/main/public/images/from_service.png" target="_blank">
+      <a href="https://github.com/Rorty/tidy-office/blob/main/public/images/from_service.PNG" target="_blank">
         <img src="https://github.com/Rorty/tidy-office/blob/main/public/images/from_service_t.png">
       </a>
       <br />
       <p>После обслуживания</p>
     </td>
     <td align="center">
-      <a href="https://github.com/Rorty/tidy-office/blob/main/public/images/show.png" target="_blank">
+      <a href="https://github.com/Rorty/tidy-office/blob/main/public/images/show.PNG" target="_blank">
         <img src="https://github.com/Rorty/tidy-office/blob/main/public/images/show_t.png">
       </a>
       <br />
       <p>Просмотр устройства</p>
     </td>
     <td align="center">
-      <a href="https://github.com/Rorty/tidy-office/blob/main/public/images/to_issue.png" target="_blank">
+      <a href="https://github.com/Rorty/tidy-office/blob/main/public/images/to_issue.PNG" target="_blank">
         <img src="https://github.com/Rorty/tidy-office/blob/main/public/images/to_issue_t.png">
       </a>
       <br />
