@@ -88,4 +88,4 @@ Tidy Office – очень простое Web приложение, для уч�
 2. Создать базу данных
 3. Отредактировать config/database.rb и config/config.yml
 4. docker-compose up -d
-5. docker-compose exec docker-compose exec web bundle exec rake db:migrate:up
+5. docker-compose exec web bundle exec rake db:migrate:up
