@@ -1,14 +1,8 @@
-RACK_ENV = ENV['RACK_ENV'] ||= 'development' unless defined?(RACK_ENV)
-APP_ROOT = File.expand_path(__FILE__) unless defined?(APP_ROOT)
-
 require 'bundler/setup'
-require 'sequel'
-require 'logger'
-require_relative 'config/database'
 require 'rake'
 require 'rake/dsl_definition'
 require 'thor'
-
+require File.expand_path('../config/boot.rb', __FILE__)
 include Rake::DSL
 
 def shell

@@ -41,18 +41,18 @@ require_relative '../lib/translation'
 require_relative '../lib/pdf_label'
 
 
-require_relative '../models/cartridge_model'
-require_relative '../models/manufacturer'
-require_relative '../models/cartridge'
-require_relative '../models/place'
-require_relative '../models/device_model'
-require_relative '../models/device_type'
-require_relative '../models/cartridge_type'
-require_relative '../models/devices'
-require_relative '../models/events'
-require_relative '../models/contract'
-require_relative '../models/cartridge_note'
-require_relative '../models/device_note'
+require_relative '../models/cartridge_model'  rescue nil
+require_relative '../models/manufacturer'  rescue nil
+require_relative '../models/cartridge'  rescue nil
+require_relative '../models/place'  rescue nil
+require_relative '../models/device_model'  rescue nil
+require_relative '../models/device_type'  rescue nil
+require_relative '../models/cartridge_type'  rescue nil
+require_relative '../models/devices'  rescue nil
+require_relative '../models/events'  rescue nil
+require_relative '../models/contract'  rescue nil
+require_relative '../models/cartridge_note'  rescue nil
+require_relative '../models/device_note'  rescue nil
 
 
 

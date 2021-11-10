@@ -75,9 +75,17 @@ Tidy Office – очень простое Web приложение, для уч�
 - Microsoft SQL Server
 
 ## Установка
-1. Установите набор библиотек FreeTDS
-2. Установите в корень проекта шрифты consola.ttf, consolab.ttf, consolai.ttf, consolaz.ttf для генерации этикеток
+1. Установить набор библиотек FreeTDS
+2. Установить в корень проекта шрифты consola.ttf, consolab.ttf, consolai.ttf, consolaz.ttf для генерации этикеток
 3. Создать базу данных
 4. Отредактировать config/database.rb и config/config.yml
 5. bundle install
-6. rake --task
+6. rake db:migrate:up
+7. RAILS_ENV=development puma -p 3000
+
+## Установка контейнера
+1 Установить в корень проекта шрифты consola.ttf, consolab.ttf, consolai.ttf, consolaz.ttf для генерации этикеток
+2. Создать базу данных
+3. Отредактировать config/database.rb и config/config.yml
+4. docker-compose up -d
+5. docker-compose exec docker-compose exec web bundle exec rake db:migrate:up

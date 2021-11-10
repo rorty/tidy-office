@@ -1,5 +1,4 @@
 # This code is licensed under the MIT License
-# author https://github.com/padrino/padrino-framework
 module Library
   module Flash
     class << self

@@ -24,7 +24,6 @@ module Library
 
 
       # This code is licensed under the MIT License
-      # author https://github.com/padrino/padrino-framework
       NEWLINE = "\n".html_safe.freeze
       def content_tag(name, content = nil, options = nil, &block)
         if block_given?
