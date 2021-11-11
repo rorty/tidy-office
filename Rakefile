@@ -10,14 +10,14 @@ def shell
 end
 
 module Tasks
-  namespace :sq do
+  namespace :db do
     namespace :migrate do
       desc "Perform automigration (reset your db data)"
       task :auto do
         ::Sequel.extension :migration
         ::Sequel::Migrator.run Sequel::Model.db, "db/migrate", :target => 0
         ::Sequel::Migrator.run Sequel::Model.db, "db/migrate"
-        puts "<= sq:migrate:auto executed"
+        puts "<= db:migrate:auto executed"
       end
 
       desc "Perform migration up/down to MIGRATION_VERSION"
@@ -26,25 +26,25 @@ module Tasks
         ::Sequel.extension :migration
         fail "No MIGRATION_VERSION was provided" if version.empty?
         ::Sequel::Migrator.apply(Sequel::Model.db, "db/migrate", version.to_i)
-        puts "<= sq:migrate:to[#{version}] executed"
+        puts "<= db:migrate:to[#{version}] executed"
       end
 
       desc "Perform migration up to latest migration available"
       task :up do
         ::Sequel.extension :migration
         ::Sequel::Migrator.run Sequel::Model.db, "db/migrate"
-        puts "<= sq:migrate:up executed"
+        puts "<= db:migrate:up executed"
       end
 
       desc "Perform migration down (erase all data)"
       task :down do
         ::Sequel.extension :migration
         ::Sequel::Migrator.run Sequel::Model.db, "db/migrate", :target => 0
-        puts "<= sq:migrate:down executed"
+        puts "<= db:migrate:down executed"
       end
     end
 
     desc "Perform migration up to latest migration available"
-    task :migrate => 'sq:migrate:up'
+    task :migrate => 'db:migrate:up'
   end
 end
